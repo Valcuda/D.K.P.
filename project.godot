@@ -8,10 +8,43 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "MainPlayerController",
+"language": "GDScript",
+"path": "res://Imported/Players/BasePlayerControler.gd"
+}, {
+"base": "MainPlayerController",
+"class": "PlayerBase_3",
+"language": "GDScript",
+"path": "res://Imported/Players/PlayerBase3.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player_Base",
+"language": "GDScript",
+"path": "res://Imported/Players/PlayerBase.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player_Base_New",
+"language": "GDScript",
+"path": "res://Imported/Players/PlayerBase2.gd"
+} ]
+_global_script_class_icons={
+"MainPlayerController": "",
+"PlayerBase_3": "",
+"Player_Base": "",
+"Player_Base_New": ""
+}
+
 [application]
 
 config/name="DKP"
+run/main_scene="res://Imported/Levels/TestLevel1.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+FreeAccessInfo="*res://FreeAccessInfo.gd"
 
 [physics]
 

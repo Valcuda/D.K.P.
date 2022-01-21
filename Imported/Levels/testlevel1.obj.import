@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/testlevel1.obj-237051d8a62166b7b7a4a1fe0b3df1cd.mesh"
+
+[deps]
+
+files=[ "res://.import/testlevel1.obj-237051d8a62166b7b7a4a1fe0b3df1cd.mesh" ]
+
+source_file="res://Imported/Levels/testlevel1.obj"
+dest_files=[ "res://.import/testlevel1.obj-237051d8a62166b7b7a4a1fe0b3df1cd.mesh", "res://.import/testlevel1.obj-237051d8a62166b7b7a4a1fe0b3df1cd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
