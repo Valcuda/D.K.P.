@@ -18,22 +18,10 @@ _global_script_classes=[ {
 "class": "PlayerBase_3",
 "language": "GDScript",
 "path": "res://Imported/Players/PlayerBase3.gd"
-}, {
-"base": "KinematicBody",
-"class": "Player_Base",
-"language": "GDScript",
-"path": "res://Imported/Players/PlayerBase.gd"
-}, {
-"base": "KinematicBody",
-"class": "Player_Base_New",
-"language": "GDScript",
-"path": "res://Imported/Players/PlayerBase2.gd"
 } ]
 _global_script_class_icons={
 "MainPlayerController": "",
-"PlayerBase_3": "",
-"Player_Base": "",
-"Player_Base_New": ""
+"PlayerBase_3": ""
 }
 
 [application]

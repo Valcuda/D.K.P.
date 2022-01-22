@@ -34,6 +34,11 @@ var curMaxSpeed = max_speed
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+enum{
+	RUN,
+	CLIMB,
+	RIDE,
+}
 
 func _unhandled_input(event):
 	if event.is_action_pressed("CamControlToggle"):
