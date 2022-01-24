@@ -2,7 +2,8 @@ extends Node
 
 #imported from Epics Awesome Adventure, by Dakota Willey
 var VersionType = "Alpha"
-var BuildNumber : float = 1.6
+var BuildNumber : float = 0.1
+var PatchNumber = 1
 
 #Debug
 var Debug : bool = true
@@ -30,8 +31,3 @@ var CameraZoomSensitivity: float = 0.7
 func LoadThisScene(NScene, NSpawn):
 	get_tree().change_scene(NScene)
 	pass
-
-func execute_rpc():
-	OS.execute("python run-rpc.py", [], false)
-func _ready():
-	execute_rpc()

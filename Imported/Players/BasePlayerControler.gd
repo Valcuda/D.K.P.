@@ -26,19 +26,27 @@ onready var spring_arm = $SpringArm
 
 #active variables
 var isRunning = false
+var canJump = true
+var should_fall = true
 
 var SpeedAdjustments = 0
 var curMaxSpeed = max_speed
+
+enum CurState {
+	RUN,
+	CLIMB,
+	RIDE,
+	INAIR,
+	ATTACK,
+	DEAD,
+}
+
+export var cur_state = CurState.RUN
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-enum{
-	RUN,
-	CLIMB,
-	RIDE,
-}
 
 func _unhandled_input(event):
 	if event.is_action_pressed("CamControlToggle"):
@@ -98,10 +106,17 @@ func apply_gravity(delta):
 	
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
+	
+func state_man(delta):
+	if cur_state == CurState.RUN:
+		run()
+	if cur_state == CurState.INAIR:
+		in_air()
+	pass
 
 
 func jump():
-	if Input.is_action_just_pressed("Move_jump") and is_on_floor():
+	if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
 		snap_vector = Vector3.ZERO
 		velocity.y = jump_impulse
 	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
@@ -125,3 +140,8 @@ func run():
 		isRunning = false
 		SpeedAdjustments -= runAdjust
 
+func in_air():
+	pass
+	if is_on_floor() and should_fall:
+		pass
+	pass
