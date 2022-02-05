@@ -1,4 +1,4 @@
-class_name MainPlayerController extends KinematicBody
+class_name MainPlayerController_0 extends KinematicBody
 
 export var max_speed = 10.0
 export var acceleration = 70.0
@@ -31,6 +31,7 @@ var should_fall = true
 
 var SpeedAdjustments = 0
 var curMaxSpeed = max_speed
+var LastInputVector = Vector3.ZERO
 
 enum CurState {
 	RUN,
@@ -63,6 +64,7 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	run()
 	var input_vector = get_input_vector()
+	var LastInputVector = input_vector
 	var direction = get_direction(input_vector)
 	apply_movement(input_vector, direction, delta)
 	apply_friction(direction, delta)
@@ -73,12 +75,6 @@ func _physics_process(delta):
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
 	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
 
-
-func get_input_vector():
-	var input_vector = Vector3.ZERO
-	input_vector.x = Input.get_action_strength("Move_left") - Input.get_action_strength("Move_right")
-	input_vector.z = Input.get_action_strength("Move_forward") - Input.get_action_strength("Move_backward")
-	return input_vector.normalized() if input_vector.length() > 1 else input_vector
 
 func get_direction(input_vector):
 	var direction = (input_vector.x * transform.basis.x) + (input_vector.z * transform.basis.z)
@@ -107,20 +103,13 @@ func apply_gravity(delta):
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
 	
-func state_man(delta):
+func state_man(delta, direction, input_vector):
 	if cur_state == CurState.RUN:
 		run()
 	if cur_state == CurState.INAIR:
-		in_air()
+		in_air(delta, direction, input_vector)
 	pass
 
-
-func jump():
-	if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
-		snap_vector = Vector3.ZERO
-		velocity.y = jump_impulse
-	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
-		velocity.y = jump_impulse / 2
 		
 func apply_controller_rotation():
 	var axis_vector = Vector2.ZERO
@@ -131,7 +120,13 @@ func apply_controller_rotation():
 		rotate_y(deg2rad(axis_vector.x) * controller_sensitivity)
 		spring_arm.rotate_x(deg2rad(axis_vector.y) * controller_sensitivity)
 
-func run():
+func get_input_vector(): #Responsible for ground movement
+	var input_vector = Vector3.ZERO
+	input_vector.x = Input.get_action_strength("Move_left") - Input.get_action_strength("Move_right")
+	input_vector.z = Input.get_action_strength("Move_forward") - Input.get_action_strength("Move_backward")
+	return input_vector.normalized() if input_vector.length() > 1 else input_vector
+
+func run(): #Responisble for increasing speed when running
 	if Input.is_action_just_pressed("Move_run") and canRun and isRunning == false:
 		isRunning = true
 		SpeedAdjustments += runAdjust
@@ -140,8 +135,14 @@ func run():
 		isRunning = false
 		SpeedAdjustments -= runAdjust
 
-func in_air():
-	pass
-	if is_on_floor() and should_fall:
-		pass
+func jump():
+	if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
+		snap_vector = Vector3.ZERO
+		velocity.y = jump_impulse
+	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
+		velocity.y = jump_impulse / 2
+
+func in_air(delta, direction, input_vector):
+	apply_movement(input_vector, direction, delta)
+	apply_gravity(delta)
 	pass
