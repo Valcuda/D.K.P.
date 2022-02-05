@@ -10,18 +10,18 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody",
-"class": "MainPlayerController",
+"class": "MainPlayerController_0",
 "language": "GDScript",
 "path": "res://Imported/Players/BasePlayerControler.gd"
 }, {
-"base": "MainPlayerController",
-"class": "PlayerBase_3",
+"base": "MainPlayerController_0",
+"class": "PlayerBase_0",
 "language": "GDScript",
-"path": "res://Imported/Players/PlayerBase3.gd"
+"path": "res://Imported/Players/PlayerBase0.gd"
 } ]
 _global_script_class_icons={
-"MainPlayerController": "",
-"PlayerBase_3": ""
+"MainPlayerController_0": "",
+"PlayerBase_0": ""
 }
 
 [application]
@@ -88,10 +88,23 @@ Move_jump={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World Env"
+3d_physics/layer_2="Cam Col"
+3d_physics/layer_3="Player Hurt"
+3d_physics/layer_4="Player Hit"
+3d_physics/layer_5="Enem Hurt"
+3d_physics/layer_6="Enem Hit"
+3d_physics/layer_7="ItemBox"
+3d_physics/layer_8="ItemDetection"
+3d_physics/layer_9="Climable"
+
 [physics]
 
 common/enable_pause_aware_picking=true
 
 [rendering]
 
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"

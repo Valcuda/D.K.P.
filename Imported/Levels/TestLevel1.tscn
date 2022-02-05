@@ -24,6 +24,15 @@ shape = SubResource( 1 )
 
 [node name="PlayerBaseTest" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.956459, 3.89611, 0.0380273 )
+max_speed = null
+acceleration = null
+friction = null
+air_friction = null
+gravity = null
+jump_impulse = null
+runAdjust = null
+cur_state = null
+CharacterID = null
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.631826, 0.551176, 0.544977, 0, -0.703097, 0.711094, 0.77511, -0.449288, -0.444235, 11.5715, 6.70167, 9.28282 )
