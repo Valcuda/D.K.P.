@@ -1,0 +1,18 @@
+This file covers 2 variables found in PlayerBase_0, or "PlayerBase3.gd", specifically GameID and CharacterID.
+
+GameID:
+	This variable is NOT vital to the games functionality, and could easily be removed without consquience.
+	Rather, this variable is for *other* games.
+	You'll notice that the class name PlayerBase3.gd uses is PlayerBase_0, and the class name BasePlayerControler.gd uses is MainPlayerControler_0.
+	That 0 is the GameID. This means, if we made a second game, the GameID would change to 1, and all instances it's used, like in the class names, it'd be replaced with a 1.
+	
+	This is to allow for easy porting of characters.
+	If we were to modify BasePlayerControler.gd for this second game, so it would no longer be compatible with the player code from the first game, then we could easily port the code over, without it interfering with the new code.
+	This'd ensure the player acts exactly as they did in this game. Of course there'd likely have to be some modifacations, but it'd be starting point.
+
+CharacterID:
+	This variable is *weird*. The player code is meant to be usable in other, personal, projects.
+	This variable is one of those things that popup because of that. In THIS game, we techincally only have 1 player, who can be in 2 different states, as such, this variable is useless.
+	In OTHER games however, this variable would be used for the game to tell the difference between multiple characters, and their different forms.
+	
+	Despite the game not "technically" needing it, it's being used because it's there, and for future compatibility reasons.
