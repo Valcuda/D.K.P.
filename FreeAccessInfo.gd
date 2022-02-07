@@ -3,14 +3,12 @@ extends Node
 #imported from Epics Awesome Adventure, by Dakota Willey
 var VersionType = "Alpha"
 var BuildNumber : float = 0.1
-var PatchNumber = 1
+var PatchNumber = 0
 
 #Debug
 var Debug : bool = true
 var IgnoreCharacterUnlocks : bool = true
 var InfMode : bool = true
-
-var GarethDebugRestrictions : bool = false
 
 
 var BaseTest = preload("res://Imported/Players/BaseTest/PlayerBaseTest.tscn")
