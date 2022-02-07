@@ -27,7 +27,8 @@ _global_script_class_icons={
 [application]
 
 config/name="DKP"
-run/main_scene="res://Imported/Levels/TestLevel1.tscn"
+run/main_scene="res://Scenes/Test Levels/Title_Test.tscn"
+run/delta_sync_after_draw=true
 config/icon="res://icon.png"
 
 [autoload]
