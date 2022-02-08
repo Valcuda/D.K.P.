@@ -13,6 +13,29 @@ var CharacterID: int = 10
 func _onready():
 	pass
 
+
+func _physics_process(delta):
+	nonlinear_player_controler()
+	pass
+
 #This is basically a finite state machine, minus the GUI, cause Godot doesn't allow for easy FNMs
 func nonlinear_player_controler():
+	match cur_state:
+		CurState.RUN:
+			if Input.is_action_just_pressed("Move_jump"):
+				jump_done = false
+				change_state(CurState.JUMP)
+			
+			if not is_on_floor():
+				change_state(CurState.INAIR)
+		
+		CurState.INAIR:
+			if is_on_floor():
+				change_state(CurState.RUN)
+			
+	
+	pass
+
+func change_state(state):
+	cur_state = state
 	pass

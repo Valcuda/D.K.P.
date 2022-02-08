@@ -32,17 +32,21 @@ var should_fall = true
 var SpeedAdjustments = 0
 var curMaxSpeed = max_speed
 var LastInputVector = Vector3.ZERO
+var LastDirection = Vector3.ZERO
+var jump_done = true
 
 enum CurState {
 	RUN,
 	CLIMB,
 	RIDE,
 	INAIR,
+	JUMP,
 	ATTACK,
 	DEAD,
 }
 
 var cur_state = CurState.RUN
+var return_state = CurState.RUN
 
 
 func _ready():
@@ -50,7 +54,6 @@ func _ready():
 	
 
 func _unhandled_input(event):
-	
 	if event.is_action_pressed("CamControlToggle"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -63,8 +66,7 @@ func _unhandled_input(event):
 		
 
 func _physics_process(delta):
-	var direction = get_direction(LastInputVector)
-	state_man(delta, direction)
+	state_man(delta)
 	
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
 	pass
@@ -111,19 +113,48 @@ func apply_gravity(delta):
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
 	
-func state_man(delta, last_direction):
-	if cur_state == CurState.RUN:
-		run()
-		var input_vector = get_input_vector()
-		var LastInputVector = input_vector
-		var direction = get_direction(input_vector)
-		apply_movement(input_vector, direction, delta)
-		apply_friction(direction, delta)
-		apply_gravity(delta)
-		update_snap_vector()
-		velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
-	if cur_state == CurState.INAIR:
-		in_air(delta, last_direction, LastInputVector)
+func state_man(delta):
+	match cur_state:
+		CurState.RUN:
+			run()
+			var input_vector = get_input_vector()
+			LastInputVector = input_vector
+			var direction = get_direction(input_vector)
+			apply_movement(input_vector, direction, delta)
+			apply_friction(direction, delta)
+			apply_gravity(delta)
+			update_snap_vector()
+			velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+			
+		CurState.INAIR:
+			apply_movement(LastInputVector, LastDirection, delta)
+			apply_gravity(delta)
+			update_snap_vector()
+			velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+			
+		CurState.CLIMB:
+			pass
+		
+		CurState.DEAD:
+			pass
+		
+		CurState.RIDE:
+			pass
+			
+		CurState.ATTACK:
+			pass
+		
+		CurState.JUMP:
+			if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
+				snap_vector = Vector3.ZERO
+				velocity.y = jump_impulse
+			elif Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
+				velocity.y = jump_impulse / 2
+			if not is_on_floor():
+				jump_done = true
+			if jump_done:
+				jump_done = false
+				cur_state = CurState.INAIR
 	pass
 
 		
@@ -157,8 +188,3 @@ func jump():
 		velocity.y = jump_impulse
 	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
-
-func in_air(delta, direction, input_vector):
-	apply_movement(input_vector, direction, delta)
-	apply_gravity(delta)
-	pass
