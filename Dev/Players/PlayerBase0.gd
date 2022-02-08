@@ -7,7 +7,8 @@ const GameID: int = 0
 #CHANGE CharacterID IN PLAYER SCRIPT
 #This allows the game to differentiate between each character
 #The Tens value should change for each unique player, while the ones value should be for different forms.
-export var CharacterID: int = 10
+#All Values begining with 1 are reserved for BaseTest_
+var CharacterID: int = 10
 
 func _onready():
 	pass

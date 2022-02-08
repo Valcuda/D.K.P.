@@ -42,7 +42,7 @@ enum CurState {
 	DEAD,
 }
 
-export var cur_state = CurState.RUN
+var cur_state = CurState.RUN
 
 
 func _ready():
@@ -50,6 +50,7 @@ func _ready():
 	
 
 func _unhandled_input(event):
+	
 	if event.is_action_pressed("CamControlToggle"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -62,18 +63,25 @@ func _unhandled_input(event):
 		
 
 func _physics_process(delta):
-	run()
-	var input_vector = get_input_vector()
-	var LastInputVector = input_vector
-	var direction = get_direction(input_vector)
-	apply_movement(input_vector, direction, delta)
-	apply_friction(direction, delta)
-	apply_gravity(delta)
-	update_snap_vector()
-	jump()
-	apply_controller_rotation()
+	var direction = get_direction(LastInputVector)
+	state_man(delta, direction)
+	
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
-	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+	pass
+	
+	#Ignore this code
+#	run()
+#	var input_vector = get_input_vector()
+#	var LastInputVector = input_vector
+#	#var direction = get_direction(input_vector)
+#	apply_movement(input_vector, direction, delta)
+#	apply_friction(direction, delta)
+#	apply_gravity(delta)
+#	update_snap_vector()
+#	jump()
+#	apply_controller_rotation()
+#	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
+#	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
 
 
 func get_direction(input_vector):
@@ -103,11 +111,19 @@ func apply_gravity(delta):
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
 	
-func state_man(delta, direction, input_vector):
+func state_man(delta, last_direction):
 	if cur_state == CurState.RUN:
 		run()
+		var input_vector = get_input_vector()
+		var LastInputVector = input_vector
+		var direction = get_direction(input_vector)
+		apply_movement(input_vector, direction, delta)
+		apply_friction(direction, delta)
+		apply_gravity(delta)
+		update_snap_vector()
+		velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
 	if cur_state == CurState.INAIR:
-		in_air(delta, direction, input_vector)
+		in_air(delta, last_direction, LastInputVector)
 	pass
 
 		
