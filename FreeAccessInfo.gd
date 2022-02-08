@@ -11,7 +11,7 @@ var IgnoreCharacterUnlocks : bool = true
 var InfMode : bool = true
 
 
-var BaseTest = preload("res://Imported/Players/BaseTest/PlayerBaseTest.tscn")
+var BaseTest = preload("res://Dev/Players/BaseTest/PlayerBaseTest.tscn")
 
 #Controls
 var CameraOrbitSensitivity : float = 10.0
