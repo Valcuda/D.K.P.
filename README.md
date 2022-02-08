@@ -1,4 +1,5 @@
-# D.K.P.
+# Ensueños
+### A Size Bending Adventure
 Dakota and Kim's game for the Skills USA competition, 2022.
 
 
@@ -10,4 +11,4 @@ Credits:
 
 Kimberly S. - Lead Director, Lead Designer, Lead Writer
 
-Dakota W. - Lead programmer, secondary Director, Project Management
+Dakota W. - Lead programmer, secondary Director, Lead Project Manager
