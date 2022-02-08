@@ -1,0 +1,2 @@
+Put all raw voice files in this folder
+That means files that haven't been cleaned up yet, or processed for their intended use
