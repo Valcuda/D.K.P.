@@ -34,6 +34,7 @@ var curMaxSpeed = max_speed
 var LastInputVector = Vector3.ZERO
 var LastDirection = Vector3.ZERO
 var jump_done = true
+var has_jumped = false
 
 enum CurState {
 	RUN,
@@ -183,8 +184,15 @@ func run(): #Responisble for increasing speed when running
 		SpeedAdjustments -= runAdjust
 
 func jump():
-	if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
-		snap_vector = Vector3.ZERO
-		velocity.y = jump_impulse
+#	if Input.is_action_pressed("Move_jump") and is_on_floor() and canJump and has_jumped == false:
+#		snap_vector = Vector3.ZERO
+#		velocity.y = jump_impulse
+#		has_jumped = true
 	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
+	if is_on_floor() == false:
+		jump_done = true
+		print("jump_done is true")
+	if is_on_floor() and jump_done:
+		cur_state = CurState.INAIR
+	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
