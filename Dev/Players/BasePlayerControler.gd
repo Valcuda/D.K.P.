@@ -32,17 +32,22 @@ var should_fall = true
 var SpeedAdjustments = 0
 var curMaxSpeed = max_speed
 var LastInputVector = Vector3.ZERO
+var LastDirection = Vector3.ZERO
+var jump_done = true
+var has_jumped = false
 
 enum CurState {
 	RUN,
 	CLIMB,
 	RIDE,
 	INAIR,
+	JUMP,
 	ATTACK,
 	DEAD,
 }
 
-export var cur_state = CurState.RUN
+var cur_state = CurState.RUN
+var return_state = CurState.RUN
 
 
 func _ready():
@@ -62,18 +67,24 @@ func _unhandled_input(event):
 		
 
 func _physics_process(delta):
-	run()
-	var input_vector = get_input_vector()
-	var LastInputVector = input_vector
-	var direction = get_direction(input_vector)
-	apply_movement(input_vector, direction, delta)
-	apply_friction(direction, delta)
-	apply_gravity(delta)
-	update_snap_vector()
-	jump()
-	apply_controller_rotation()
+	state_man(delta)
+	
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
-	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+	pass
+	
+	#Ignore this code
+#	run()
+#	var input_vector = get_input_vector()
+#	var LastInputVector = input_vector
+#	#var direction = get_direction(input_vector)
+#	apply_movement(input_vector, direction, delta)
+#	apply_friction(direction, delta)
+#	apply_gravity(delta)
+#	update_snap_vector()
+#	jump()
+#	apply_controller_rotation()
+#	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
+#	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
 
 
 func get_direction(input_vector):
@@ -103,11 +114,48 @@ func apply_gravity(delta):
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
 	
-func state_man(delta, direction, input_vector):
-	if cur_state == CurState.RUN:
-		run()
-	if cur_state == CurState.INAIR:
-		in_air(delta, direction, input_vector)
+func state_man(delta):
+	match cur_state:
+		CurState.RUN:
+			run()
+			var input_vector = get_input_vector()
+			LastInputVector = input_vector
+			var direction = get_direction(input_vector)
+			apply_movement(input_vector, direction, delta)
+			apply_friction(direction, delta)
+			apply_gravity(delta)
+			update_snap_vector()
+			velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+			
+		CurState.INAIR:
+			apply_movement(LastInputVector, LastDirection, delta)
+			apply_gravity(delta)
+			update_snap_vector()
+			velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
+			
+		CurState.CLIMB:
+			pass
+		
+		CurState.DEAD:
+			pass
+		
+		CurState.RIDE:
+			pass
+			
+		CurState.ATTACK:
+			pass
+		
+		CurState.JUMP:
+			if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
+				snap_vector = Vector3.ZERO
+				velocity.y = jump_impulse
+			elif Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
+				velocity.y = jump_impulse / 2
+			if not is_on_floor():
+				jump_done = true
+			if jump_done:
+				jump_done = false
+				cur_state = CurState.INAIR
 	pass
 
 		
@@ -136,13 +184,15 @@ func run(): #Responisble for increasing speed when running
 		SpeedAdjustments -= runAdjust
 
 func jump():
-	if Input.is_action_just_pressed("Move_jump") and is_on_floor() and canJump:
-		snap_vector = Vector3.ZERO
-		velocity.y = jump_impulse
+#	if Input.is_action_pressed("Move_jump") and is_on_floor() and canJump and has_jumped == false:
+#		snap_vector = Vector3.ZERO
+#		velocity.y = jump_impulse
+#		has_jumped = true
 	if Input.is_action_just_released("Move_jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
-
-func in_air(delta, direction, input_vector):
-	apply_movement(input_vector, direction, delta)
-	apply_gravity(delta)
-	pass
+	if is_on_floor() == false:
+		jump_done = true
+		print("jump_done is true")
+	if is_on_floor() and jump_done:
+		cur_state = CurState.INAIR
+	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)

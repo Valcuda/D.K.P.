@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Dev/Coliders/HitBox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Dev/Players/PlayerBase0.gd" type="Script" id=2]
+[ext_resource path="res://Dev/Players/BasePlayerControler.gd" type="Script" id=2]
 [ext_resource path="res://Dev/Players/BaseTest/PlayerBaseTest_Material.tres" type="Material" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -29,7 +29,6 @@ size = Vector3( 0.2, 0.2, 2 )
 collision_layer = 2
 collision_mask = 261
 script = ExtResource( 2 )
-canRun = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
