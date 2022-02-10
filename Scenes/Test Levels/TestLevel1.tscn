@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Dev/Players/BaseTest/PlayerBaseTest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Dev/Materials/Dev Material 1.tres" type="Material" id=2]
 [ext_resource path="res://Dev/Players/PlayerBase0.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Test Levels/DebugGUI.gd" type="Script" id=4]
+[ext_resource path="res://Dev/Coliders/InvisWall.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=3]
 surfaces/0 = {
@@ -101,3 +102,17 @@ margin_left = 53.0
 margin_top = 10.0
 margin_right = 93.0
 margin_bottom = 24.0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Invisible Walls" parent="Node" instance=ExtResource( 5 )]
+transform = Transform( 27.1503, 0, 0, 0, 11.1793, 0, 0, 0, 1, 0, 14.2364, 34.7914 )
+
+[node name="Invisible Walls2" parent="Node" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 11.1793, 0, 0, 0, 34.5671, -27.7656, 14.2364, -0.338158 )
+
+[node name="Invisible Walls4" parent="Node" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 11.1793, 0, 0, 0, 34.5671, 27.9259, 14.2364, -0.338158 )
+
+[node name="Invisible Walls3" parent="Node" instance=ExtResource( 5 )]
+transform = Transform( 26.8771, 0, 0, 0, 11.1793, 0, 0, 0, 1, 0, 3.5436, -34.7991 )

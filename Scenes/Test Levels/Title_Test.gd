@@ -19,3 +19,8 @@ func _ready():
 func _on_Start_Test1_pressed():
 	FreeAccessInfo.LoadThisScene("res://Scenes/Test Levels/TestLevel1.tscn", "def")
 	pass # Replace with function body.
+
+
+func _on_Start_Test2_pressed():
+	FreeAccessInfo.LoadThisScene("res://Scenes/Test Levels/TestLevel2.tscn", "def")
+	pass # Replace with function body.
