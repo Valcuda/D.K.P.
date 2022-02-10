@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "MainPlayerController_0",
 "class": "PlayerBase_0",
 "language": "GDScript",
-"path": "res://Dev/Players/PlayerBase0.gd"
+"path": "res://Dev/Players/Daniela/PlayerBase_Daniela.gd"
 } ]
 _global_script_class_icons={
 "MainPlayerController_0": "",

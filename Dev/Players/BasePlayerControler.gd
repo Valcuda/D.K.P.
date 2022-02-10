@@ -71,20 +71,6 @@ func _physics_process(delta):
 	
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
 	pass
-	
-	#Ignore this code
-#	run()
-#	var input_vector = get_input_vector()
-#	var LastInputVector = input_vector
-#	#var direction = get_direction(input_vector)
-#	apply_movement(input_vector, direction, delta)
-#	apply_friction(direction, delta)
-#	apply_gravity(delta)
-#	update_snap_vector()
-#	jump()
-#	apply_controller_rotation()
-#	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg2rad(camLowerBound), deg2rad(camUpperBound))
-#	velocity = move_and_slide_with_snap(velocity,  snap_vector, Vector3.UP, true)
 
 
 func get_direction(input_vector):

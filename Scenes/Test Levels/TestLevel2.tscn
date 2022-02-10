@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Dev/Players/BaseTest/PlayerBaseTest.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Dev/Players/Daniela/Player_Daniela.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/TestLevel_2.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://Dev/Players/PlayerBase0.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Test Levels/DebugGUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Textures/Dev/Blue256x256_tile.png" type="Texture" id=5]
 
@@ -29,12 +28,6 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 shape = SubResource( 1 )
-
-[node name="PlayerBaseTest" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.956459, 3.89611, 0.0380273 )
-script = ExtResource( 3 )
-jump_impulse = 30.0
-canRun = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.631826, 0.551176, 0.544977, 0, -0.703097, 0.711094, 0.77511, -0.449288, -0.444235, 11.5715, 6.70167, 9.28282 )
@@ -91,3 +84,6 @@ margin_left = 53.0
 margin_top = 10.0
 margin_right = 93.0
 margin_bottom = 24.0
+
+[node name="Player_Daniela" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7088, 10.8314, -8.72082 )

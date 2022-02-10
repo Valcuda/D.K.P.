@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var player = get_node("PlayerBaseTest")
+onready var player = get_node("Player_Daniela")
 onready var player_X = get_node("Debug GUI/Panel/Player X")
 onready var player_Y = get_node("Debug GUI/Panel/Player Y")
 onready var player_Z = get_node("Debug GUI/Panel/Player Z")
