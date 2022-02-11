@@ -85,5 +85,5 @@ margin_top = 10.0
 margin_right = 93.0
 margin_bottom = 24.0
 
-[node name="Player_Daniela" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7088, 10.8314, -8.72082 )

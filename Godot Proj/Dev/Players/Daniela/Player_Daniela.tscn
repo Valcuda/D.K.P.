@@ -14,7 +14,7 @@ extents = Vector3( 0.880684, 1.54684, 0.873157 )
 [sub_resource type="CapsuleShape" id=3]
 radius = 0.75
 
-[node name="Player_Daniela" type="KinematicBody"]
+[node name="Player" type="KinematicBody"]
 collision_layer = 2
 collision_mask = 261
 script = ExtResource( 3 )

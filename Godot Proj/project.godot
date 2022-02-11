@@ -9,17 +9,23 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "MainPlayerController_0",
+"class": "Daniela_Base_0",
+"language": "GDScript",
+"path": "res://Dev/Players/Daniela/PlayerBase_Daniela.gd"
+}, {
 "base": "KinematicBody",
 "class": "MainPlayerController_0",
 "language": "GDScript",
 "path": "res://Dev/Players/BasePlayerControler.gd"
 }, {
-"base": "MainPlayerController_0",
+"base": "Reference",
 "class": "PlayerBase_0",
 "language": "GDScript",
-"path": "res://Dev/Players/Daniela/PlayerBase_Daniela.gd"
+"path": "res://Dev/Players/PlayerBase0.gd"
 } ]
 _global_script_class_icons={
+"Daniela_Base_0": "",
 "MainPlayerController_0": "",
 "PlayerBase_0": ""
 }

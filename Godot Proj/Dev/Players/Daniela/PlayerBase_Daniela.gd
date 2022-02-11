@@ -1,4 +1,4 @@
-class_name PlayerBase_0 extends MainPlayerController_0
+class_name Daniela_Base_0 extends MainPlayerController_0
 
 #DONT CHANGE THE GAME ID.
 #This allows the character to be easily ported into another game.
