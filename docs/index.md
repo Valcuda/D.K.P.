@@ -1,37 +1,38 @@
-## Welcome to GitHub Pages
+# Ensueños
+## The Size Bending Adventure
 
-You can use the [editor on GitHub](https://github.com/Valcuda/D.K.P./edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+### About
+Ensueños (Codenamed "DKP") is a student project for the Skills USA competition in Maine.
+It's a 3rd person, adventure horror game, with some puzzle elements.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The game takes place in a hospital, which the player is trying to escape. A core gameplay mechanic is that the player will, occasionally, shrink in size, forcing them to explore familiar environments, _from a whole_ **_new_** _perspective._
 
-### Markdown
+### Meet The Team!
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### Dakota "Valiatrix" Willey
+- Project Manager
+- Head Programmer
+- Head Animator
+- Voice Actor
+- Graphics Director
+- Head GUI Manager
+- Level Designer
+- Modeler
+- Website Manager/Developer
 
-```markdown
-Syntax highlighted code block
+"I've personally been interested in game development my whole life. Honestly, working on a team, even of just 3 people, is a dream come true! I've personally taught myself quite a bit about game development, and the tools surrounding it, so it's only natural I'd become the project manager XD. It honestly really is fun tho, watching as the game takes shape. I'd say this is the funnest, and coolest thing **EVER** in my life so far, I wouldn't trade it for anything." - Dakota Willey
 
-# Header 1
-## Header 2
-### Header 3
+### Kimerly "Kim" Serrano
+- Director
+- Head Writer
+- Head Modeler
+- Head Level Designer
+- Voice Actor
+- Casting Manager
 
-- Bulleted
-- List
+(Kim's Quote here)
 
-1. Numbered
-2. List
+### Brandin "TheMayoMan" Jasper
+- Modeler
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Valcuda/D.K.P./settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+(Brandin's Quote here)
